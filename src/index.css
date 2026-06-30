@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-aether-bg: var(--aether-bg);
+  --color-aether-surface: var(--aether-surface);
+  --color-aether-primary: var(--aether-primary);
+  --color-aether-primary-hover: var(--aether-primary-hover);
+  --color-aether-text: var(--aether-text);
+  --color-aether-muted: var(--aether-muted);
+  --color-aether-border: var(--aether-border);
+  
+  --radius-aether: var(--aether-radius);
+  --font-aether: var(--aether-font-body);
+  --font-serif: var(--aether-font-headings);
+}
+
+/* Base Theme Variables */
+:root {
+  --aether-bg: #fafafa;
+  --aether-surface: #ffffff;
+  --aether-primary: #bd081c;
+  --aether-primary-hover: #e60023;
+  --aether-text: #111111;
+  --aether-muted: #555555;
+  --aether-border: #e0e0e0;
+  --aether-radius: 4px;
+  --aether-font-headings: "Playfair Display", Georgia, serif;
+  --aether-font-body: "Inter", -apple-system, sans-serif;
+  
+  /* Additional system-wide styling variables */
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Light Theme Variables */
+:root.light {
+  --aether-bg: #fafafa;
+  --aether-surface: #ffffff;
+  --aether-primary: #bd081c;
+  --aether-primary-hover: #e60023;
+  --aether-text: #111111;
+  --aether-muted: #555555;
+  --aether-border: #e0e0e0;
+}
+
+/* Global Reset & Styling */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--aether-bg);
+  color: var(--aether-text);
+  font-family: var(--aether-font-body);
+  font-size: var(--aether-font-size, 13px);
+  font-weight: var(--aether-font-weight, 400);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--aether-font-headings);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--aether-border);
+  opacity: 0.5;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--aether-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--aether-font-headings);
+  color: var(--aether-heading);
+}
+
+a {
+  color: var(--aether-link);
+}
+
+/* Glassmorphism Preset Helper */
+.glass-panel {
+  background: color-mix(in srgb, var(--aether-surface) calc(var(--aether-bg-opacity, 0.7) * 100%), transparent);
+  backdrop-filter: blur(var(--aether-blur, 12px));
+  -webkit-backdrop-filter: blur(var(--aether-blur, 12px));
+  border: 1px solid var(--aether-border);
+  box-shadow: var(--aether-shadow);
+}
+
+/* Card Style Configurations */
+html[data-card-style="flat"] .tile-wrapper {
+  background-color: var(--aether-surface) !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+html[data-card-style="bordered"] .tile-wrapper {
+  background-color: var(--aether-surface) !important;
+  border: 1px solid var(--aether-border) !important;
+  box-shadow: var(--aether-shadow) !important;
+}
+html[data-card-style="glass"] .tile-wrapper {
+  background-color: color-mix(in srgb, var(--aether-surface) calc(var(--aether-bg-opacity, 0.8) * 100%), transparent) !important;
+  backdrop-filter: blur(var(--aether-blur, 12px)) !important;
+  -webkit-backdrop-filter: blur(var(--aether-blur, 12px)) !important;
+  border: 1px solid var(--aether-border) !important;
+  box-shadow: var(--aether-shadow) !important;
+}
+
+/* Button Style Configurations */
+html[data-button-style="sharp"] button,
+html[data-button-style="sharp"] .btn {
+  border-radius: 0px !important;
+}
+html[data-button-style="pill"] button,
+html[data-button-style="pill"] .btn {
+  border-radius: 9999px !important;
+}
+html[data-button-style="editorial"] button,
+html[data-button-style="editorial"] .btn {
+  border-radius: var(--aether-radius, 4px) !important;
+}
+
+/* Custom transitions effects */
+html[data-transition-effect="none"] * {
+  transition-property: none !important;
+  animation: none !important;
+}
+html[data-transition-effect="fade"] .tile-wrapper {
+  transition: opacity var(--aether-animation-speed, 0.3s) ease-in-out;
+}
+html[data-transition-effect="zoom"] .tile-wrapper {
+  transition: transform var(--aether-animation-speed, 0.3s) cubic-bezier(0.4, 0, 0.2, 1), opacity var(--aether-animation-speed, 0.3s) ease-in-out;
+}
+
+/* Glowing Border Presets */
+.glow-primary {
+  box-shadow: 0 0 15px rgba(102, 252, 241, 0.35);
+}
+.light .glow-primary {
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
+}
+
+/* Interactive custom resize handles helper */
+.resize-handle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: var(--aether-border);
+  border: 2px solid var(--aether-bg);
+  border-radius: 50%;
+  z-index: 50;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.resize-handle:hover {
+  background-color: var(--aether-primary);
+  transform: scale(1.3);
+  cursor: nwse-resize;
+}
+
+/* Custom Webkit/YT elements hiding controls */
+iframe {
+  border: none;
+}
+
+/* Animation utilities */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(102, 252, 241, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(102, 252, 241, 0.6);
+  }
+}
+
+.pulse-glow-border {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes soundwave {
+  0% {
+    height: 4px;
+  }
+  100% {
+    height: 16px;
+  }
+}
+
+/* Force clean, legible sans-serif for UI panels, settings control forms and sidebars */
+header, 
+aside, 
+.glass-panel, 
+.ui-panel, 
+button, 
+select, 
+input, 
+textarea,
+.absolute.bottom-6.right-6 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+header h1, header h2, header h3, header h4, header h5, header h6,
+aside h1, aside h2, aside h3, aside h4, aside h5, aside h6,
+.glass-panel h1, .glass-panel h2, .glass-panel h3, .glass-panel h4, .glass-panel h5, .glass-panel h6,
+.ui-panel h1, .ui-panel h2, .ui-panel h3, .ui-panel h4, .ui-panel h5, .ui-panel h6 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Force YouTube background video iframe to cover parent dimensions cleanly */
+#atmosphere-video-iframe,
+#atmosphere-video-iframe iframe {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) scale(1.15) !important;
+  pointer-events: none !important;
+  
+  /* Modern CSS cover using aspect-ratio */
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9 !important;
+  min-height: 100% !important;
+  min-width: 177.77% !important;
+}
+
+/* Let content viewers and editors scale with the user's custom font properties */
+.markdown-preview p,
+.markdown-preview li,
+.markdown-preview h1,
+.markdown-preview h2,
+.markdown-preview h3,
+.code-viewer pre,
+.code-viewer code,
+.note-editor textarea,
+.note-editor [contenteditable],
+.csv-table td,
+.csv-table th,
+.interactive-file-viewport textarea,
+.interactive-file-viewport pre,
+.interactive-file-viewport code {
+  font-size: var(--aether-font-size) !important;
+  font-weight: var(--aether-font-weight) !important;
+}
